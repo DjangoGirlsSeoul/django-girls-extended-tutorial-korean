@@ -1,4 +1,4 @@
-# 숙제 : Comment 모델 만들기
+# 숙제 : 댓글 모델(comment model) 만들기
 
 지금까지 우리는 방문자로부터 피드백을 받아서 저장하는 Post 모델에 대해서만 다뤘습니다.
 
@@ -22,15 +22,15 @@ class Comment(models.Model):
         return self.text
 ```
 
-각 필드타입들에 대한 설명은 튜토리얼 **Django Models** 챕터에서 다뤘었어요.
+각 필드 타입들에 대한 설명은 튜토리얼 **Django 모델** 장에서 다뤘어요.
 
-이 챕터에서는 새로운 필드 타입을 써볼게요. - `models.BooleanField` - 참/거짓 필드
+이번 장에서는 새로운 필드 타입을 써볼게요. - `models.BooleanField` - 참/거짓(true/false) 필드 랍니다.
 
 `models.ForeignKey` 의 `related_name` 옵션은 Post 모델에서 댓글목록에 접근하기 위한 이름입니다.
 
 ## 데이터베이스에 새 모델에 대한 테이블 생성하기
 
-자. 데이터베이스에 Comment 모델을 추가할 시간이예요. 그럴려면 Django 에게 모델의 변경내역을 알 수 있도록 해줘야합니다. `python manage.py makemigrations blog` 명령을 입력하세요.
+자, 데이터베이스에 Comment 모델을 추가할 시간이에요. 그러려면 Django 에게 모델의 변경내용을 알 수 있도록 해줘야 합니다. `python manage.py makemigrations blog` 명령을 입력하세요.
 
     (myvenv) ~/djangogirls$ python manage.py makemigrations blog
     Migrations for 'blog':
@@ -68,7 +68,7 @@ admin.site.register(Post)
 admin.site.register(Comment)
 ```
 
-명령 프롬프트에서 `python manage.py runserver` 명령을 입력하고 [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin/) 페이지로 가서, Comment 생성/삭제/목록확인을 해보세요. 망설이지 말고 바로 해보세요.
+명령 프롬프트에서 `python manage.py runserver` 명령을 입력하고 [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin/) 페이지로 가서, Comment 생성/삭제/목록확인을 해보세요. 주저하지 말고 바로 해보세요.
 
 ## Comment 를 노출시켜봅시다.
 
@@ -87,7 +87,7 @@ admin.site.register(Comment)
 {% endfor %}
 ```
 
-자 이제 post details 페이지에서 댓글들을 확인할 수 있어요.
+자 이제 post details 페이지에서 댓글들을 확인할 수 있게 되었어요.
 
 좀 더 이쁘게 보여지면 좋겠어요. `static/css/blog.css` 에 아래 css 코드를 추가해보세요.
 
@@ -97,7 +97,7 @@ admin.site.register(Comment)
 }
 ```
 
-post list 페이지에서 각 post 별 댓글갯수를 노출시켜봅시다. `blog/templates/blog/post_list.html` 에 아래 코드를 추가해주세요.
+Post list 페이지에서 각 post 별 댓글 갯수를 노출시켜봅시다. `blog/templates/blog/post_list.html` 에 아래 코드를 추가해주세요.
 
 ```django
 <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
@@ -124,7 +124,7 @@ post list 페이지에서 각 post 별 댓글갯수를 노출시켜봅시다. `b
 
 ## 방문자가 댓글을 남길 수 있도록 해봅시다
 
-이제 방문자는 댓글을 확인할 수는 있지만 댓글을 남길 수는 없어요. 남길 수 있도록 해봅시다.
+이제 방문자는 댓글을 확인은 가능하지만, 댓글을 남길 수는 없어요. 남길 수 있도록 만들어 봅시다.
 
 `blog/forms.py` 파일 끝에 아래 코드를 추가해보세요.
 
@@ -156,7 +156,7 @@ from .models import Post, Comment
 
 post detail 페이지로 가면, 에러가 뜰 거예요.
 
-![일치하지 내역이 없습니다(NoReverseMatch)](images/url_error.png)
+![일치한 내용이 없습니다 (NoReverseMatch)](images/url_error.png)
 
 이를 고쳐봅시다. `blog/urls.py` 파일 `urlpatterns` 에 아래 패턴을 추가해주세요.
 
@@ -166,7 +166,7 @@ url(r'^post/(?P<pk>[0-9]+)/comment/$', views.add_comment_to_post, name='add_comm
 
 이제 또 다른 에러가 뜰 거예요.
 
-![속성에러(AttributeError)](images/views_error.png)
+![속성에러 (AttributeError)](images/views_error.png)
 
 이 에러를 잡을려면, `blog/views.py` 에 아래 코드를 추가해주세요.
 
@@ -193,11 +193,11 @@ from .forms import PostForm, CommentForm
 
 이제 post detail 페이지로 가보시면, "Add Comment" 버튼을 확인할 수 있을 겁니다.
 
-![댓글 추가하기](images/add_comment_button.png)
+![댓글 추가하기 (AddComment)](images/add_comment_button.png)
 
 하지만, 이 버튼을 누르면 또 에러가 발생합니다. :(
 
-![템플릿이 존재하지 않습니다(TemplateDoesNotExist)](images/template_error.png)
+![템플릿이 존재하지 않습니다 (TemplateDoesNotExist)](images/template_error.png)
 
 이 에러는 뷰에서 지정된 템플릿이 없다는 에러입니다. `blog/templates/blog/add_comment_to_post.html` 경로에 아래 코드내용으로 파일을 생성해주세요.
 
@@ -217,7 +217,7 @@ Yay! 이제 방문자는 댓글을 남길 수 있게 되었어요. :D
 
 ## 댓글 관리하기
 
-현재 블로그에 남겨진 모든 댓글들이 post detail 페이지에 노출되고 있어요. 블로그 관리자에게는 댓글을 승인하거나 삭제하는 기능을 필요합니다. 자.만들어봅시다.
+현재 블로그에 남겨진 모든 댓글들이 post detail 페이지에 노출되고 있어요. 블로그 관리자가 댓글을 승인하거나 삭제할 수 있는 기능이 필요하겠죠. 이제 만들어 봅시다.
 
 `blog/templates/blog/post_detail.html` 파일은 현재 아래와 같은 내용입니다.
 
@@ -233,7 +233,7 @@ Yay! 이제 방문자는 댓글을 남길 수 있게 되었어요. :D
 {% endfor %}
 ```
 
-이를 다음과 같이 수정해주세요.
+이 내용을 다음과 같이 수정해주세요.
 
 ```django
 {% for comment in post.comments.all %}
@@ -281,7 +281,7 @@ def comment_remove(request, pk):
     return redirect('blog.views.post_detail', pk=post_pk)
 ```
 
-그리고, 물론 필요한 import 도 꼭 체크해주세요.
+그리고 필요한 import도 꼭 체크해주세요.
 
 모두 잘 동작하는 듯 보이지만, 한 가지 빠뜨린 것이 있습니다. 현재 post list 에서는 등록된 모든 댓글의 갯수가 노출되고 있는 데요. 승인된 댓글의 갯수가 노출되도록 수정해봅시다.
 

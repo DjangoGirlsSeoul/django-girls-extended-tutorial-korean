@@ -6,7 +6,7 @@
 
 이 튜토리얼은 [Django Girls Tutorial](http://tutorial.djangogirls.org/)을 마친 분들을 위한 심화 내용입니다.
 
-목차: - [숙제: 웹사이트에 더 추가해봐요!](https://github.com/DjangoGirls/tutorial-extensions/blob/master/homework/README.md) - [숙제: 웹사이트를 안전하게 만들어요](https://github.com/DjangoGirls/tutorial-extensions/blob/master/authentication_authorization/README.md) - [숙제: 댓글 모델을 만들어요](https://github.com/DjangoGirls/tutorial-extensions/blob/master/homework_create_more_models/README.md) - [옵션: PostgreSQL 설치하기](https://github.com/DjangoGirls/tutorial-extensions/blob/master/optional_postgresql_installation/README.md)
+목차: - [숙제: 웹사이트에 더 추가하기](https://github.com/DjangoGirls/tutorial-extensions/blob/master/homework/README.md) - [숙제: 안전한 웹사이트 만들기](https://github.com/DjangoGirls/tutorial-extensions/blob/master/authentication_authorization/README.md) - [숙제: 댓글 모델을 만들기](https://github.com/DjangoGirls/tutorial-extensions/blob/master/homework_create_more_models/README.md) - [옵션: PostgreSQL 설치하기](https://github.com/DjangoGirls/tutorial-extensions/blob/master/optional_postgresql_installation/README.md)
 
 ## 기여하기
 
